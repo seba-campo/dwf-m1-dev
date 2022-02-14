@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Momia 1",
+        "rating": 4,
+        "tags": ["acción", "favorita", "nueva"]
+
+    },
+    {
+        "title": "B",
+        "rating": 3,
+        "tags": ["favorita", "nueva"]
+    },
+    {
+        "title": "D",
+        "rating": 3,
+        "tags": ["favorita", "nueva"]
+    },
+    {
+        "title": "C",
+        "rating": 5,
+        "tags": ["acción", "drama", "nueva"]
+    }
+]
