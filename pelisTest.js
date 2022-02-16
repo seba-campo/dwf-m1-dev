@@ -1,6 +1,15 @@
+const lista = require("./pelis.json");
+
 const getAll = function () {
     // retorna todas las pelis (collection)
     // acá hay que leer el archivo y parsearlo 
+    const table = console.table(lista);
+    return table
+  };
+
+  const noFormat = function(){
+      const parsed = JSON.stringify(lista);
+      return parsed
   };
   
   const searchBy = function (texto, arrayDePelis) {
@@ -18,14 +27,23 @@ const getAll = function () {
   exports.searchByCriteria = function (criterios) {
     // comienzo un array vacio que voy a empezar a rellenar con las respuestas de las funciones
     let tmp = getAll();
-  
-    if (criterios.search) {
+
+    console.log(criterios);
+
+    if(criterios.noFormat){
+        tmp = noFormat();
+    }else{
+        console.log("no hay 'noFormat'");
+    }
+
+
+    if (criterios.search){ 
       console.log("hay search y es", criterios.search);
       tmp = searchBy(criterios.search, tmp);
     } else {
       console.log("no hay search");
     }
-  
+
     if (criterios.sort) {
       tmp = sortBy(criterios.sort, tmp);
       console.log("hay sort y es", criterios.sort);
