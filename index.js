@@ -1,5 +1,28 @@
-const pelis = require('./pelis.js');
-const argv = process.argv.slice(2);
+const pelis = require("./pelis");
+
+function parsearARGV() {
+  //... acá ocurre la magia
+  const argv = process.argv.slice(2);
+  
+  return {
+    search: "magic",
+    sort: "rating",
+  };
+}
+
+function main() {
+  const comandosAEjecutar = parsearARGV(process.argv);
+
+  pelis.searchByCriteria(comandosAEjecutar);
+}
+
+main();
+
+
+
+// PROPIO 
+
+
 
 function main(){
     
