@@ -5,9 +5,10 @@ function parsearARGV() {
   const arguments = process.argv.slice(2);
 
   var argReturn = {
-      search = "testSearch",
-      sort = "testSort"      
-    }
+      noFormat: true,
+      search: "testSearch",
+      sort: "testSort"      
+  }
   
   
   return argReturn

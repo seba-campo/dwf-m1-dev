@@ -15,6 +15,7 @@ const getAll = function () {
   const searchBy = function (texto, arrayDePelis) {
     // recibe un array de pelis y las filtra por texto
     // acá hay que usar el método filter de array 
+    // console.log("hola desde SearchBy");
   };
   const sortBy = function (propiedad, arrayDePelis) {
     // recibe un array de pelis y las ordena por propiedad
@@ -22,6 +23,7 @@ const getAll = function () {
     // tiene que poder ordenar el array contemplando que me pueden pasar cualquier cosa en 
     // el parámetro "propiedad", no solo rating y title
     // Pista: https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
+    // console.log("hola desde sortBy");
   };
   
   exports.searchByCriteria = function (criterios) {
@@ -31,14 +33,14 @@ const getAll = function () {
     console.log(criterios);
 
     if(criterios.noFormat){
-        tmp = noFormat();
+        tmp = console.log(noFormat());
     }else{
-        console.log("no hay 'noFormat'");
+        // console.log("no hay 'noFormat'");
     }
 
 
     if (criterios.search){ 
-      console.log("hay search y es", criterios.search);
+      // console.log("hay search y es", criterios.search);
       tmp = searchBy(criterios.search, tmp);
     } else {
       console.log("no hay search");
@@ -46,7 +48,7 @@ const getAll = function () {
 
     if (criterios.sort) {
       tmp = sortBy(criterios.sort, tmp);
-      console.log("hay sort y es", criterios.sort);
+      // console.log("hay sort y es", criterios.sort);
     } else {
       console.log("no hay sort");
     }
