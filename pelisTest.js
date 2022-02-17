@@ -3,21 +3,16 @@ const lista = require("./pelis.json");
 const getAll = function () {
   // retorna todas las pelis (collection)
   // acá hay que leer el archivo y parsearlo 
-  const arrayDePelis = lista;
+  var arrayDePelis = lista;
 
   for (let i = 0; i < arrayDePelis.length; i++) {
     const element = arrayDePelis[i];
-    
-    element.forEach( x => {
-      if(typeof x == 'string'){
-        x.toLowerCase();
-      }
-    });
-    
+    var toLower = element.title.toLowerCase();
+
+    return arrayDePelis;
 
   }
-  
-  
+
   return arrayDePelis
   
 };
@@ -26,7 +21,7 @@ const getAll = function () {
 const noFormat = function(){
     const parsed = JSON.stringify(lista);
     return parsed
-  };
+};
 
 const searchBy = function (texto, arrayDePelis) {
   // recibe un array de pelis y las filtra por texto
