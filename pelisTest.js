@@ -9,7 +9,7 @@ const getAll = function () {
     const element = arrayDePelis[i];
     var toLower = element.title.toLowerCase();
 
-    return arrayDePelis;
+    return ;
 
   }
 
