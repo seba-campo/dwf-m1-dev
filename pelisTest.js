@@ -26,13 +26,9 @@ const noFormat = function(){
 const searchBy = function (texto, arrayDePelis) {
   // recibe un array de pelis y las filtra por texto
   // acá hay que usar el método filter de array 
-  // console.log("hola desde SearchBy");
-
   
-    // var tmp = arrayDePelis.filter(function(x){
-  //   });
 
-    return arrayDePelis
+  return arrayDePelis
   
 };
 
@@ -59,11 +55,15 @@ exports.searchByCriteria = function (criterios) {
   console.log(tmp);
   // console.log(criterios);
 
+  if(criterios.noParameter){
+    tmp = console.table(lista);
+  };
+
   if (criterios.noFormat){
       tmp = console.log(noFormat());
   }else{
       // console.log("no hay 'noFormat'");
-  }
+  };
 
 
   if (criterios.search){ 
@@ -71,20 +71,20 @@ exports.searchByCriteria = function (criterios) {
     tmp = searchBy(criterios.search, tmp);
   } else {
     console.log("no hay search");
-  }
+  };
 
   if (criterios.sort){
     tmp = sortBy(criterios.sort, tmp);
     // console.log("hay sort y es", criterios.sort);
   } else {
     console.log("no hay sort");
-  }
+  };
   
   if (criterios.tag){ 
     tmp = sortByTag(criterios.tag, tmp);
   } else {
     console.log("no hay tags")
-  }
+  };
 
 
   return tmp;

@@ -8,7 +8,11 @@ function parsearARGV() {
 
   };
 
-  // Buscar los diferentes parametros
+  // Llamar los diferentes parametros
+
+  if(arguments.length == 0 || arguments == null ){
+    argObj.noParameter = true;
+  };
 
   if(arguments.includes('--no-format') || arguments.includes('--no-Format') ){
     // const argumentIndex = arguments.indexOf('--no-format');
@@ -16,8 +20,7 @@ function parsearARGV() {
     argObj.noFormat = true;
   } else {
     argObj.noFormat = false;
-  }
-  ;
+  };
 
   if(arguments.includes('--search')){
     const argumentIndex = arguments.indexOf('--search');
