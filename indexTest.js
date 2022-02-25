@@ -9,20 +9,27 @@ function parsearARGV() {
   };
 
   // Identificar los diferentes parámetros
+  if(arguments.includes('--help') || arguments.includes('--comands') || arguments.length == 0){
+    const leyenda = `
+                  -----Comandos-----
+        "--no-format": Devuelve la lista de películas sin formato.
+        "--search": Buscar película por título
+        "--sort": Ordenar listado de películas por parametro (title, rating, etc)
+        "--tag": Devuelve las películas filtradas por el tag deseado.
+
+        Si no enviás ningún parámetro, mostrará una tabla con películas y este mensaje de --help
+    `;
+    
+    console.log(leyenda);
+  };
 
   if(arguments.length == 0 || arguments == null ){
     argObj.noParameter = true;
-  }else{
-    argObj.noParameter = false;
   };
 
   if(arguments.includes('--no-format') || arguments.includes('--no-Format') ){
-    // const argumentIndex = arguments.indexOf('--no-format');
-    // const parameterValue = true;
     argObj.noFormat = true;
-  }else{
-    argObj.noFormat = false;
-  }
+  };
 
   if(arguments.includes('--search')){
     const argumentIndex = arguments.indexOf('--search');
@@ -45,7 +52,6 @@ function parsearARGV() {
     argObj.tag = parameterValue;
   };
 
-  // console.log(arguments);
 
   return argObj
 }
