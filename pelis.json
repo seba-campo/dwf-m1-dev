@@ -1,23 +1,33 @@
 [
     {
         "title": "Momia 1",
-        "rating": 4,
+        "rating": 6,
         "tags": ["acción", "favorita", "nueva"]
 
     },
     {
-        "title": "B",
-        "rating": 3,
-        "tags": ["favorita", "nueva"]
+        "title": "Matrix",
+        "rating": 9,
+        "tags": ["favorita", "nueva", "futurista", "distopico"]
     },
     {
-        "title": "D",
-        "rating": 3,
-        "tags": ["favorita", "nueva"]
+        "title": "Suits",
+        "rating": 8,
+        "tags": ["series", "ley","favorita", "nueva"]
     },
     {
-        "title": "C",
-        "rating": 5,
-        "tags": ["acción", "drama", "nueva"]
+        "title": "The walking Dead",
+        "rating": 8,
+        "tags": ["acción", "drama", "series"]
+    },
+    {
+        "title": "Rapido y Furiosos",
+        "rating": 7.5,
+        "tags": ["acción", "autos", "carreras"]
+    },
+    {
+        "title": "Gladiador",
+        "rating": 10,
+        "tags": ["acción", "historico", "belico"]
     }
 ]

@@ -1,17 +1,10 @@
-const lista = require("./pelis.json");
+const lista = require("./pelis")
+
 
 const getAll = function () {
   // retorna todas las pelis (collection)
   // acá hay que leer el archivo y parsearlo 
   var arrayDePelis = lista;
-
-  for (let i = 0; i < arrayDePelis.length; i++) {
-    const element = arrayDePelis[i];
-    var toLower = element.title.toLowerCase();
-
-    return ;
-
-  }
 
   return arrayDePelis
   
@@ -24,27 +17,48 @@ const noFormat = function(){
 };
 
 const searchBy = function (texto, arrayDePelis) {
-  // recibe un array de pelis y las filtra por texto
-  // acá hay que usar el método filter de array 
-  
 
-  return arrayDePelis
+  var resultado = arrayDePelis.filter((x) => {
+    return x == texto
+  });
+
+  return resultado
   
 };
 
 
 const sortBy = function (propiedad, arrayDePelis) {
-  // recibe un array de pelis y las ordena por propiedad
-  // acá se ordena usando el método sort usando el parámetro "propiedad"
-  // tiene que poder ordenar el array contemplando que me pueden pasar cualquier cosa en 
-  // el parámetro "propiedad", no solo rating y title
-  // Pista: https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
-  // console.log("hola desde sortBy");
-  };
+
+  var arrayOrdenado = arrayDePelis.sort((a,b) =>{
+    
+    if(a[propiedad] < b[propiedad]){
+      return -1
+    }
+    if(a[propiedad] > b[propiedad]){
+      return 1
+    }else{
+      return 0
+    }
+     
+  });
+
+  return arrayOrdenado
+
+};
 
 const sortByTag = function (propiedad, arrayDePelis) {
+  
+  const propiedadLowered = propiedad.toLowerCase(); 
 
-  };
+
+  var filtrado = arrayDePelis.filter((x) => {
+
+    return x.tags.includes(propiedadLowered);
+  });
+
+  return filtrado
+
+};
 
 
 
@@ -52,15 +66,17 @@ exports.searchByCriteria = function (criterios) {
   // comienzo un array vacio que voy a empezar a rellenar con las respuestas de las funciones
   let tmp = getAll();
 
-  console.log(tmp);
+  // console.log(listaLowered);
+
+  // console.log(tmp);
   // console.log(criterios);
 
-  if(criterios.noParameter){
+  if (criterios.noParameter){
     tmp = console.table(lista);
   };
 
   if (criterios.noFormat){
-      tmp = console.log(noFormat());
+    console.log(noFormat());
   }else{
       // console.log("no hay 'noFormat'");
   };
@@ -75,7 +91,6 @@ exports.searchByCriteria = function (criterios) {
 
   if (criterios.sort){
     tmp = sortBy(criterios.sort, tmp);
-    // console.log("hay sort y es", criterios.sort);
   } else {
     console.log("no hay sort");
   };

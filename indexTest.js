@@ -12,15 +12,17 @@ function parsearARGV() {
 
   if(arguments.length == 0 || arguments == null ){
     argObj.noParameter = true;
+  }else{
+    argObj.noParameter = false;
   };
 
   if(arguments.includes('--no-format') || arguments.includes('--no-Format') ){
     // const argumentIndex = arguments.indexOf('--no-format');
     // const parameterValue = true;
     argObj.noFormat = true;
-  } else {
+  }else{
     argObj.noFormat = false;
-  };
+  }
 
   if(arguments.includes('--search')){
     const argumentIndex = arguments.indexOf('--search');
@@ -52,7 +54,8 @@ function parsearARGV() {
 function main() {
   const comandosAEjecutar = parsearARGV();
 
-  pelis.searchByCriteria(comandosAEjecutar);
+  console.log(pelis.searchByCriteria(comandosAEjecutar));
+
 }
 
 main();
