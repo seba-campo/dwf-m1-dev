@@ -8,7 +8,7 @@ function parsearARGV() {
 
   };
 
-  // Llamar los diferentes parametros
+  // Identificar los diferentes parámetros
 
   if(arguments.length == 0 || arguments == null ){
     argObj.noParameter = true;

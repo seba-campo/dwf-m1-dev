@@ -16,18 +16,18 @@
         "tags": ["series", "ley","favorita", "nueva"]
     },
     {
-        "title": "The walking Dead",
+        "title": "The walking Dead ",
         "rating": 8,
-        "tags": ["acción", "drama", "series"]
+        "tags": ["accion", "drama", "series"]
     },
     {
-        "title": "Rapido y Furiosos",
+        "title": "Rapido y Furiosos red",
         "rating": 7.5,
-        "tags": ["acción", "autos", "carreras"]
+        "tags": ["accion", "autos", "carreras"]
     },
     {
-        "title": "Gladiador",
+        "title": "Gladiador red",
         "rating": 10,
-        "tags": ["acción", "historico", "belico"]
+        "tags": ["accion", "historico", "belico"]
     }
 ]

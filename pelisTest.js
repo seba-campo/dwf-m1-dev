@@ -1,4 +1,4 @@
-const lista = require("./pelis")
+const lista = require("./pelis.json")
 
 
 const getAll = function () {
@@ -11,15 +11,20 @@ const getAll = function () {
 };
 
 
-const noFormat = function(){
-    const parsed = JSON.stringify(lista);
+const noFormat = function(arrayDePelis){
+    const parsed = JSON.stringify(arrayDePelis);
     return parsed
 };
 
 const searchBy = function (texto, arrayDePelis) {
 
   var resultado = arrayDePelis.filter((x) => {
-    return x == texto
+    
+    var titleLowered = x.title.toLowerCase();
+    const textoLowered = texto.toLowerCase();
+
+
+    return titleLowered.includes(textoLowered);
   });
 
   return resultado
@@ -66,8 +71,6 @@ exports.searchByCriteria = function (criterios) {
   // comienzo un array vacio que voy a empezar a rellenar con las respuestas de las funciones
   let tmp = getAll();
 
-  // console.log(listaLowered);
-
   // console.log(tmp);
   // console.log(criterios);
 
@@ -75,11 +78,7 @@ exports.searchByCriteria = function (criterios) {
     tmp = console.table(lista);
   };
 
-  if (criterios.noFormat){
-    console.log(noFormat());
-  }else{
-      // console.log("no hay 'noFormat'");
-  };
+  
 
 
   if (criterios.search){ 
@@ -101,6 +100,11 @@ exports.searchByCriteria = function (criterios) {
     console.log("no hay tags")
   };
 
+  if (criterios.noFormat){
+    console.log(noFormat(tmp));
+  }else{
+      // console.log("no hay 'noFormat'");
+  };
 
   return tmp;
 };
