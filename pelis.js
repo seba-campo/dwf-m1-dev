@@ -1,5 +1,9 @@
-const lista = require("./pelis.json")
+const fs = require('fs');
+const listaRaw = fs.readFileSync(__dirname + "/pelis.json");
 
+// sacado del discord
+const listaString = listaRaw.toString();
+const lista = JSON.parse(listaString)
 
 const getAll = function () {
   // retorna todas las pelis (collection)
@@ -10,11 +14,13 @@ const getAll = function () {
 };
 
 
-const noFormat = function(arrayDePelis){
+const noFormat = function(array){
     // Recibe collection y lo retorna sin formato
-    const parsed = JSON.stringify(arrayDePelis);
+    const parsed = JSON.stringify(array);
+
+    const string = parsed.toString();
     
-    return parsed
+    return string
 };
 
 const searchBy = function (texto, arrayDePelis) {
@@ -95,12 +101,13 @@ exports.searchByCriteria = function (criterios) {
     // console.log("no hay tags")
   };
 
-  if (criterios.noFormat){
-    console.log(noFormat(tmp));
-  };
 
   if (criterios.noParameter){
-    tmp = console.table(lista);
+    return lista
+  };
+
+  if (criterios.noFormat){
+    return noFormat(tmp)
   };
   
   // Si se ejecuta "noParameter" devuelve undefined,
