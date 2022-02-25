@@ -1,64 +1,67 @@
-const pelis = require("./pelis");
+const pelis = require("./pelis.js");
 
 function parsearARGV() {
   //... acá ocurre la magia
-  const argv = process.argv.slice(2);
+  const arguments = process.argv.slice(2);
   
-  return {
-    search: "magic",
-    sort: "rating",
+  let argObj = {
+
   };
+
+  // Identificar los diferentes parámetros
+  if(arguments.includes('--help') || arguments.includes('--comands') || arguments.length == 0){
+    const leyenda = `
+                  -----Comandos-----
+        "--no-format": Devuelve la lista de películas sin formato.
+        "--search": Buscar película por título
+        "--sort": Ordenar listado de películas por parametro (title, rating, etc)
+        "--tag": Devuelve las películas filtradas por el tag deseado.
+
+        Si no enviás ningún parámetro, mostrará una tabla con películas y este mensaje de --help
+    `;
+    
+    console.log(leyenda);
+  };
+
+  if(arguments.length == 0 || arguments == null ){
+    argObj.noParameter = true;
+  };
+
+  if(arguments.includes('--no-format') || arguments.includes('--no-Format') ){
+    argObj.noFormat = true;
+  };
+
+  if(arguments.includes('--search')){
+    const argumentIndex = arguments.indexOf('--search');
+    const parameterValue = arguments[argumentIndex + 1];
+
+    argObj.search = parameterValue;
+  };
+
+  if(arguments.includes('--sort')){
+    const argumentIndex = arguments.indexOf('--sort');
+    const parameterValue = arguments[argumentIndex + 1];
+
+    argObj.sort = parameterValue;
+  };
+
+  if(arguments.includes('--tag')){
+    const argumentIndex = arguments.indexOf('--tag');
+    const parameterValue = arguments[argumentIndex + 1];
+
+    argObj.tag = parameterValue;
+  };
+
+
+  return argObj
 }
+
 
 function main() {
-  const comandosAEjecutar = parsearARGV(process.argv);
+  const comandosAEjecutar = parsearARGV();
 
-  pelis.searchByCriteria(comandosAEjecutar);
+  console.log(pelis.searchByCriteria(comandosAEjecutar));
+
 }
-
-main();
-
-
-
-// PROPIO 
-
-
-
-function main(){
-    
-    if(argv.length == 0){
-        pelis.noParameter();
-        pelis.noFormat();
-    }
-
-    if(argv.includes('-help') || argv.includes('-cmd')){
-        const leyenda = `
-                    -----Comandos-----
-            "-find": Buscar película por título.
-            "-sort": Ordenar listado de películas por parametro
-        `;
-        
-        console.log(leyenda);
-    };
-
-    if(argv.includes('-find')) {
-        const parameterIndex = argv.indexOf('-find');
-        const parameterValue = argv[parameterIndex + 1];
-
-        console.log(pelis.buscar(parameterValue));
-        console.log("Se ejecuto find con el parametro: " + parameterValue);
-    }
-    
-    if (argv.includes('-sort')) {
-        const parameterIndex = argv.indexOf('-sort');
-        const parameterValue = argv[parameterIndex + 1];
-
-        console.log(parameterIndex, parameterValue);
-
-        console.table(pelis.ordenar(parameterValue));
-        console.log("Se ejecuto sort con el argumento " + parameterValue);
-    }
-
-};
 
 main();

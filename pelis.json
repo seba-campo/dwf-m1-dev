@@ -29,5 +29,10 @@
         "title": "Gladiador red",
         "rating": 10,
         "tags": ["accion", "historico", "belico"]
+    },
+    {
+        "title": "El crochet para bebes",
+        "rating": 5,
+        "tags": ["manualidad", "tejidos"]
     }
 ]

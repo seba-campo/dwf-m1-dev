@@ -1,67 +1,109 @@
-const lista = require("./pelis.json");
-
-// No Format - DONE 
-exports.noFormat = function(){
-    const stringify = JSON.stringify(lista);
-    const print = console.log(stringify);
-    
-    return print;
-}
-
-exports.noParameter = function(){
-    const table = console.table(lista);
-
-    return table;
-}
-
-// TO DO
+const lista = require("./pelis.json")
 
 
+const getAll = function () {
+  // retorna todas las pelis (collection)
+  var arrayDePelis = lista;
 
-
-exports.test = function(a){
-    const retorno = a + " que tal.";
-    return retorno;
+  return arrayDePelis
+  
 };
 
-// Sort
-exports.ordenar = function(arg){
+
+const noFormat = function(arrayDePelis){
+    // Recibe collection y lo retorna sin formato
+    const parsed = JSON.stringify(arrayDePelis);
     
-    if(arg == "rating" || arg == "Rating"){
-        const rating = lista["rating"];
- 
-        for (let i = 0; i < lista.length; i++) {
-            i.rating.sort(function(a,b){
-                if(a<b){ 
-                    return -1
-                }
-                if(a>b){
-                    return 1
-                }
-                if(a==b){
-                    return 0
-                }
-            })
-            return lista  
-        }
-        
+    return parsed
+};
+
+const searchBy = function (texto, arrayDePelis) {
+  // Busca dentro del "arrayDePelis" el "texto" indicado 
+  // y lo incluye en un nuevo array
+  var resultado = arrayDePelis.filter((x) => {
+    
+    var titleLowered = x.title.toLowerCase();
+    const textoLowered = texto.toLowerCase();
+
+
+    return titleLowered.includes(textoLowered);
+  });
+
+  return resultado
+  
+};
+
+
+const sortBy = function (propiedad, arrayDePelis) {
+  // ordena el arrayDePelis según la propiedad pasada
+  // NO CREA UN ARRAY NUEVO, modifica el existente.
+
+
+  var arrayOrdenado = arrayDePelis.sort((a,b) =>{
+    
+    if(a[propiedad] < b[propiedad]){
+      return -1
     }
+    if(a[propiedad] > b[propiedad]){
+      return 1
+    }else{
+      return 0
+    }
+     
+  });
+
+  return arrayOrdenado
 
 };
 
-// Find
-exports.buscar = function(parameter){
+const sortByTag = function (propiedad, arrayDePelis) {
+  // Recibe un arrayDePelis y los filtra por la propiedad
+  // retorna otro array con los valores que correspondan
 
-    
-    
-    const pelicula = lista.find((x) => { 
-        const index = x.title.indexOf([parameter]);
-        const value = lista[index];
+  const propiedadLowered = propiedad.toLowerCase(); 
 
-        return value
-        
-    });
+  var filtrado = arrayDePelis.filter((x) => {
 
-    return pelicula
+    return x.tags.includes(propiedadLowered);
+  });
 
+  return filtrado
+
+};
+
+
+
+exports.searchByCriteria = function (criterios) {
+ 
+  let tmp = getAll();
+
+  if (criterios.search){ 
+    tmp = searchBy(criterios.search, tmp);
+  } else {
+    // console.log("no hay search");
+  };
+
+  if (criterios.sort){
+    tmp = sortBy(criterios.sort, tmp);
+  } else {
+    // console.log("no hay sort");
+  };
+  
+  if (criterios.tag){ 
+    tmp = sortByTag(criterios.tag, tmp);
+  } else {
+    // console.log("no hay tags")
+  };
+
+  if (criterios.noFormat){
+    console.log(noFormat(tmp));
+  };
+
+  if (criterios.noParameter){
+    tmp = console.table(lista);
+  };
+  
+  // Si se ejecuta "noParameter" devuelve undefined,
+  // ya que "tmp" guarda un console.table() de la lista
+  return tmp;
 };
